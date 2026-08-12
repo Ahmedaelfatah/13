@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صيانة بلاي ستيشن</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #080a10;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .poster-container {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            height: 600px;
+            background: radial-gradient(circle at center, #1a233a 0%, #080a10 90%);
+            border: 2px solid #1f293d;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+
+        /* تأثير الجدران الجانبية المضيئة */
+        .poster-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: #4deeea;
+            box-shadow: 0 0 20px #4deeea;
+            opacity: 0.6;
+        }
+
+        .poster-container::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: #ff3e3e;
+            box-shadow: 0 0 20px #ff3e3e;
+            opacity: 0.6;
+        }
+
+        /* نصوص النيون العلوية */
+        .header-title {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .neon-blue {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #e6ffff;
+            margin: 0;
+            line-height: 1.1;
+            text-shadow: 
+                0 0 8px #00f3ff,
+                0 0 20px #00f3ff,
+                0 0 40px #00a3a3;
+        }
+
+        .neon-red {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #fff2f2;
+            margin: 5px 0 0 0;
+            line-height: 1.1;
+            text-shadow: 
+                0 0 8px #ff2a2a,
+                0 0 20px #ff2a2a,
+                0 0 40px #b30000;
+        }
+
+        /* نص جيم أوفر بالخلفية */
+        .gameover-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+            margin-bottom: -20px;
+        }
+
+        /* صندوق الاتصال السفلي */
+        .contact-box {
+            width: 85%;
+            background: rgba(8, 10, 16, 0.85);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+            box-sizing: border-box;
+        }
+
+        .contact-item {
+            font-size: 1.6rem;
+            color: #00f3ff;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phone-number {
+            font-family: 'Courier New', Courier, monospace;
+            direction: ltr;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        
+        <!-- العناوين العلوية المضيئة -->
+        <div class="header-title">
+            <h1 class="neon-blue">صيانة</h1>
+            <h1 class="neon-red">بلاي ستيشن</h1>
+        </div>
+
+        <!-- نص الخلفية للألعاب -->
+        <div class="gameover-text">GAMEOVER</div>
+
+        <!-- بيانات الاتصال السفلية -->
+        <div class="contact-box">
+            <div class="contact-item">
+                <span>واتساب:</span>
+                <span class="phone-number">01004161904</span>
+            </div>
+            <div class="contact-item">
+                <span>الموبايل:</span>
+                <span class="phone-number">01004161904</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
