@@ -1,0 +1,139 @@
+/* ==========================================
+   1. الإعدادات العامة والخلفية المظلمة
+   ========================================== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #030305; /* أسود داكن جداً مائل للأزرق */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   2. البوستر الحاضن (محاكاة أبعاد الصورة)
+   ========================================== */
+.cyber-poster {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    height: 600px;
+    /* تدفق لوني دائري يعطي إضاءة خافتة بالمنتصف وعتمة بالأطراف */
+    background: radial-gradient(circle at center, #121826 0%, #030305 85%);
+    border: 2px solid #161f30;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+}
+
+/* ==========================================
+   3. تأثير النيون الأزرق المشع (كلمة صيانة)
+   ========================================== */
+.neon-glow-blue {
+    font-size: 4.2rem;
+    font-weight: 900;
+    color: #e6ffff;
+    text-align: center;
+    margin: 0;
+    line-height: 1.1;
+    /* طبقات متعددة من الظل لإنشاء إشعاع النيون الكثيف */
+    text-shadow: 
+        0 0 6px #00ffff,
+        0 0 15px #00ffff,
+        0 0 30px #00ffff,
+        0 0 60px #00a3a3;
+    animation: bluePulse 4s infinite alternate;
+}
+
+/* ==========================================
+   4. تأثير النيون الأحمر/البرتقالي (كلمة بلاي ستيشن)
+   ========================================== */
+.neon-glow-red {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #fff2f2;
+    text-align: center;
+    margin: 10px 0 0 0;
+    line-height: 1.1;
+    text-shadow: 
+        0 0 6px #ff3333,
+        0 0 15px #ff3333,
+        0 0 30px #ff3333,
+        0 0 60px #b30000;
+    animation: redPulse 4s infinite alternate;
+}
+
+/* ==========================================
+   5. خلفية النص المدمج (GAMEOVER)
+   ========================================== */
+.gameover-overlay {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 2.8rem;
+    color: rgba(255, 255, 255, 0.08); /* شفافية عالية لتبدو كخلفية شاشة */
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+/* ==========================================
+   6. صندوق بيانات الاتصال السفلي
+   ========================================== */
+.contact-card {
+    background: rgba(4, 5, 8, 0.85);
+    padding: 15px 40px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+    width: 80%;
+    max-width: 350px;
+}
+
+.contact-row {
+    font-size: 1.5rem;
+    color: #00ffff; /* لون سماوي نيون خفيف للعنوان */
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phone-style {
+    font-family: 'Courier New', Courier, monospace;
+    direction: ltr; /* لضمان قراءة الأرقام العربية من اليسار لليمين */
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   7. حركات الأنيميشن لوميض النيون (Flicker)
+   ========================================== */
+@keyframes bluePulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 6px #00ffff, 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 60px #00a3a3; }
+    92% { opacity: 1; }
+    93% { opacity: 0.9; text-shadow: 0 0 4px #00ffff; }
+    94% { opacity: 1; }
+    95% { opacity: 0.85; }
+    96% { opacity: 1; }
+}
+
+@keyframes redPulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 6px #ff3333, 0 0 15px #ff3333, 0 0 30px #ff3333, 0 0 60px #b30000; }
+    88% { opacity: 1; }
+    89% { opacity: 0.9; text-shadow: 0 0 3px #ff3333; }
+    90% { opacity: 1; }
+    91% { opacity: 0.8; }
+    92% { opacity: 1; }
+}
