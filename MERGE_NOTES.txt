@@ -1,0 +1,11 @@
+Kassem merged build - 11.00 through 13.00
+
+Base: Kassem-main(2)
+Functional updates imported from ps4-1100-1300-exploit-host-main:
+- ps4_offsets.js: adds 12.50 offsets and 12.02/12.52 aliases, including kpatch override support.
+- chain_poops.js: newer Poops chain implementation/fixes.
+- chain_lapse.js: newer patch-blob selection logic.
+- patches/1250.bin: added from the captured zrm project because Kassem's manifest referenced it but the file was absent.
+
+Kassem HTML/UI files were intentionally preserved.
+cache.appcache hashes were regenerated to match the merged files.

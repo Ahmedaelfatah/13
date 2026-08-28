@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR" manifest="cache.appcache">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>احمد البودى - Lapse Chain</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-height: 100vh; background-color: #050a14; color: #e8edf5;
+    font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
+    position: relative; overflow: hidden; direction: ltr; display: flex; align-items: center; justify-content: center;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; background-image: url('bg.jpg');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    opacity: 0.85; z-index: 0; filter: brightness(0.35) contrast(1.1);
+  }
+
+  #wrap { padding: 28px; position: relative; z-index: 1; width: 100%; max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; justify-content: center; }
+  #header {
+    text-align: center; margin-bottom: 26px; padding: 30px 24px 28px; background: rgba(5, 10, 20, 0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 20px;
+    border: 1px solid rgba(226, 30, 56, 0.3); border-top: 4px solid #e21e38;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(226, 30, 56, 0.15); flex-shrink: 0; position: relative; overflow: hidden;
+  }
+  #header h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 900; color: #ffffff; margin-bottom: 10px; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 10px rgba(226, 30, 56, 0.8), 0 0 20px rgba(226, 30, 56, 0.6); direction: ltr; }
+  #header h1 span { color: #e21e38; }
+  #header .sub { font-size: 1.3rem; color: #e21e38; font-weight: 900; background: rgba(226, 30, 56, 0.1); display: inline-block; padding: 5px 20px; border-radius: 5px; border: 1px solid rgba(226, 30, 56, 0.3); text-shadow: 0 0 8px rgba(226, 30, 56, 0.5); margin-bottom: 15px; direction: ltr; }
+  .neon-line { width: 72%; height: 2px; margin: 0 auto 24px; background: linear-gradient(90deg, transparent, rgba(226, 30, 56, 0.3), #e21e38, rgba(226, 30, 56, 0.3), transparent); box-shadow: 0 0 8px rgba(226, 30, 56, 0.8), 0 0 20px rgba(226, 30, 56, 0.45); }
+
+  #state { font-size: 22px; font-weight: 800; margin: 0 0 12px; padding: 14px 20px; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); border-radius: 20px; border: 1px solid rgba(226, 30, 56, 0.2); text-shadow: 0 0 10px rgba(226, 30, 56, 0.5); text-align: center; flex-shrink: 0; border-left: 4px solid #e21e38; }
+  .loading-wrapper { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 4px; }
+  .loader-dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
+  .loader-dots span { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ffffff; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); animation: dot-bounce 1.4s infinite ease-in-out both; }
+  .loader-dots span:nth-child(1) { animation-delay: -0.32s; } .loader-dots span:nth-child(2) { animation-delay: -0.16s; } .loader-dots span:nth-child(3) { animation-delay: 0s; }
+  @keyframes dot-bounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.35; } 40% { transform: scale(1.25); opacity: 1; } }
+
+  #out { white-space: pre-wrap; font: 12px/1.45 Consolas, monospace; background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 14px 18px; min-height: calc(100vh - 400px); max-height: calc(100vh - 400px); overflow-y: auto; color: #c8ced8; }
+  #out::-webkit-scrollbar { width: 6px; } #out::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 10px; } #out::-webkit-scrollbar-thumb { background: rgba(226, 30, 56, 0.3); border-radius: 10px; } #out::-webkit-scrollbar-thumb:hover { background: rgba(226, 30, 56, 0.5); }
+  .footer { position: fixed; bottom: 14px; left: 22px; z-index: 2; font-family: 'Orbitron', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.5); letter-spacing: 2px; font-weight: bold; }
+
+  @media (max-width: 600px) { #wrap { padding: 12px 14px; } #header { padding: 20px 10px 22px; border-radius: 20px; } #header h1 { font-size: 2.2rem; } #state { font-size: 18px; } #out { min-height: calc(100vh - 350px); max-height: calc(100vh - 350px); } }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="header">
+    <h1>احمد البودى <span>X</span> STORE</h1>
+    <div class="sub">EXPLOIT LAPSE</div>
+    <div class="neon-line"></div>
+  </div>
+  <div id="state">
+    <div class="loading-wrapper">
+      <span id="stateText">⏳ Carregando cadeia Lapse...</span>
+      <span class="loader-dots"><span></span><span></span><span></span></span>
+    </div>
+  </div>
+  <div id="out"></div>
+</div>
+<div class="footer">احمد البودى • Lapse</div>
+<script type="module">
+  import "./chain_lapse.js";
+</script>
+</body>
+</html>

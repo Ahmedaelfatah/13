@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR" manifest="cache.appcache">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>احمد البودى - PS4 Jailbreak</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-height: 100vh;
+    background-color: #050a14;
+    color: #ffffff;
+    font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; direction: ltr; 
+  }
+
+  /* خلفية الصورة الخاصة بالاستور */
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url('bg.jpg');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    opacity: 0.85; z-index: 0; filter: brightness(0.35) contrast(1.1);
+  }
+
+  #container {
+    width: 100%; max-width: 850px; padding: 40px; margin: 20px;
+    background: rgba(5, 10, 20, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px; border: 1px solid rgba(226, 30, 56, 0.3); border-top: 4px solid #e21e38;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(226, 30, 56, 0.15);
+    text-align: center; position: relative; z-index: 1;
+  }
+
+  #main-header { margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px dashed rgba(226, 30, 56, 0.25); }
+  #main-header h1 {
+    font-family: 'Orbitron', sans-serif; font-size: 4rem; font-weight: 900; color: #ffffff;
+    margin-bottom: 10px; letter-spacing: 3px; text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(226, 30, 56, 0.8), 0 0 25px rgba(226, 30, 56, 0.6); direction: ltr;
+  }
+  #main-header h1 span { color: #e21e38; }
+  
+  #main-header .sub {
+    font-size: 1.3rem; color: #e21e38; font-weight: 900; background: rgba(226, 30, 56, 0.1);
+    display: inline-block; padding: 6px 20px; border-radius: 5px; border: 1px solid rgba(226, 30, 56, 0.3);
+    text-shadow: 0 0 8px rgba(226, 30, 56, 0.5); margin-bottom: 15px; direction: ltr;
+  }
+
+  .card {
+    background: rgba(0, 0, 0, 0.6); border-radius: 15px; padding: 30px 20px; margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+  #state {
+    display: flex; align-items: center; justify-content: center; width: 100%; min-height: 60px;
+    padding: 10px; margin: 0 0 20px; border-radius: 10px; background: rgba(226, 30, 56, 0.05);
+    border-left: 4px solid #e21e38; font-size: 26px; font-weight: 800; color: #ffffff; text-shadow: 0 0 10px rgba(226, 30, 56, 0.5);
+  }
+  #det { font-size: 19px; color: #aebfd3; margin: 15px 0; padding: 15px; border-radius: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); }
+  #det b { font-family: 'Orbitron', sans-serif; color: #fff; font-size: 20px; background: #e21e38; padding: 2px 10px; border-radius: 5px; box-shadow: 0 0 10px #e21e38; direction: ltr; display: inline-block; }
+  #det .chip { font-family: 'Orbitron', sans-serif; display: inline-block; background: transparent; padding: 2px 12px; border-radius: 5px; color: #e21e38; font-size: 18px; font-weight: 900; border: 1px solid #e21e38; box-shadow: 0 0 8px rgba(226, 30, 56, 0.4); text-shadow: 0 0 5px rgba(226, 30, 56, 0.8); direction: ltr; }
+  #cache { font-size: 16px; color: #8192a8; margin-top: 15px; padding: 5px 15px; border-radius: 20px; display: inline-block; background: rgba(255, 255, 255, 0.03); }
+  #cache.cacheok { color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); text-shadow: 0 0 8px rgba(0, 255, 136, 0.5); }
+  .ok { color: #00ff88; } .bad { color: #e21e38; border-left-color: #e21e38 !important; } .warn { color: #fdd663; border-left-color: #fdd663 !important; }
+
+  .loading { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+  .loader-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ffffff; box-shadow: 0 0 10px #ffffff; animation: dot-bounce 1s infinite ease-in-out both; }
+  .loader-dot:nth-child(1) { animation-delay: -0.32s; } .loader-dot:nth-child(2) { animation-delay: -0.16s; } .loader-dot:nth-child(3) { animation-delay: 0s; }
+  @keyframes dot-bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.3; } 40% { transform: scale(1); opacity: 1; } }
+
+  /* Informações de contato */
+  .contact-info { text-align: left; margin-top: 10px; }
+  .contact-info h3 { font-size: 1.5rem; font-weight: 900; color: #ffffff; margin-bottom: 15px; text-align: center; text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); }
+  .contact-grid { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item { background: rgba(0, 0, 0, 0.5); border-left: 4px solid #e21e38; padding: 12px 20px; border-radius: 8px; display: flex; flex-direction: column; border-bottom: 1px solid rgba(255, 255, 255, 0.03); transition: all 0.3s ease; }
+  .contact-item:hover { background: rgba(226, 30, 56, 0.1); box-shadow: 0 0 15px rgba(226, 30, 56, 0.2); }
+  .contact-label { font-size: 1.1rem; color: #e21e38; font-weight: 900; margin-bottom: 5px; }
+  .contact-value { font-size: 1.2rem; font-weight: 800; color: #ffffff; line-height: 1.5; }
+
+  .footer-brand { position: fixed; bottom: 15px; left: 20px; z-index: 2; font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: bold; color: rgba(255, 255, 255, 0.4); letter-spacing: 2px; }
+
+  @media (max-width: 600px) {
+    #container { padding: 25px 20px; border-radius: 15px; }
+    #main-header h1 { font-size: 2.8rem; } #main-header .sub { font-size: 1rem; }
+    .card { padding: 20px 10px; } #state { font-size: 20px; } .contact-value { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <div id="main-header">
+    <h1>احمد البودى <span>X</span> STORE</h1>
+    <div class="sub">PS4 Jailbreak - 11.00 - 13.00</div>
+  </div>
+
+  <div class="card">
+    <div id="state">Detectando firmware...</div>
+    <div id="det"></div>
+    <div id="cache"></div>
+    <div class="loading">
+      <span class="loader-dot"></span><span class="loader-dot"></span><span class="loader-dot"></span>
+    </div>
+  </div>
+
+  <div class="contact-info">
+    <h3>Informações de contato</h3>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="contact-label">📍 Endereço</span>
+        <span class="contact-value">احمد البودى</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">📱 Telefones</span>
+        <span class="contact-value" style="direction: ltr; text-align: left;">01004161904 &nbsp;-&nbsp; قريه الوعاضلة</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-brand">احمد البودى</div>
+
+<script>
+(function () {
+    var stateEl = document.getElementById("state");
+    var detEl = document.getElementById("det");
+    var cacheEl = document.getElementById("cache");
+
+    function setState(t, c) {
+        stateEl.innerHTML = t;
+        stateEl.className = c || "";
+    }
+
+    function setCache(t, ok) {
+        cacheEl.textContent = t;
+        cacheEl.className = ok ? "cacheok" : "";
+    }
+
+    var params = new URLSearchParams(location.search);
+    var key = null, fwnum = null;
+
+    var m = /PlayStation\s+4[\/ ](\d+)\.(\d+)/.exec(navigator.userAgent);
+    if (m) {
+        var minor = parseInt(m[2], 16);
+        var ms = minor.toString(16);
+        if (ms.length < 2) ms = "0" + ms;
+        key = m[1] + "." + ms;
+        fwnum = parseInt(m[1], 10) * 100 + parseInt(ms, 10);
+    }
+
+    var bug = null, why = "";
+    var forced = params.get("bug");
+
+    if (forced === "lapse" || forced === "poops") {
+        bug = forced;
+        why = "Selecionado manualmente via ?bug=" + forced;
+    }
+    else if (!key) {
+        why = "Este navegador não é um PlayStation 4";
+    }
+    else if (fwnum <= 1202) {
+        bug = "lapse";
+        why = key + " — compatível (Lapse)";
+    }
+    else if (fwnum >= 1250) {
+        bug = "poops";
+        why = key + " — compatível (Poops)";
+    }
+    else {
+        why = key + " — não suportado";
+    }
+
+    var fwDisplay = key ? "<b>" + key + "</b>" : "<span style='color:#8f9eb0;'>غير معروف</span>";
+    var bugDisplay = bug ? "<span class='chip'>" + bug.toUpperCase() + "</span>" : "<span style='color:#8f9eb0;'>لا يوجد</span>";
+
+    detEl.innerHTML = "Firmware " + fwDisplay + " &nbsp;•&nbsp; " + "Exploit " + bugDisplay + " &nbsp;<br>&nbsp; " + why;
+
+    if (!bug) {
+        setState("FIRMWARE NÃO SUPORTADO", "bad");
+        return;
+    }
+
+    var target = (bug === "lapse" ? "run_lapse.html" : "run_poops.html") + location.search;
+
+    function go() {
+        setState("Carregando " + bug + " ...", "warn");
+        location.replace(target);
+    }
+
+    function waitForTap(msg, action) {
+        setState(msg, "warn");
+        function fire() {
+            window.removeEventListener("click", fire);
+            window.removeEventListener("keydown", fire);
+            action();
+        }
+        window.addEventListener("click", fire);
+        window.addEventListener("keydown", fire);
+    }
+
+    var ac = window.applicationCache;
+    if (!ac || !document.documentElement.hasAttribute("manifest")) {
+        go();
+    }
+    else if (!navigator.onLine) {
+        setCache("Offline — executando pelo cache", true);
+        go();
+    }
+    else if (ac.status === ac.IDLE) {
+        setCache("Cache pronto", true);
+        go();
+    }
+    else if (ac.status === ac.UPDATEREADY) {
+        try { ac.swapCache(); } catch (e) {}
+        setCache("Atualização baixada", true);
+        waitForTap("ATUALIZAÇÃO PRONTA — pressione X para recarregar e executar", function () { location.reload(); });
+    }
+    else {
+        setCache("Verificando cache...");
+        
+        ac.addEventListener("downloading", function () {
+            setCache("Criando cache para uso offline...");
+        }, false);
+
+        ac.addEventListener("progress", function (e) {
+            if (e && e.total) {
+                setCache("Armazenando " + Math.round((e.loaded / e.total) * 100) + "%");
+            }
+        }, false);
+
+        ac.addEventListener("cached", function () {
+            setCache("Cache concluído — pronto para uso offline", true);
+            waitForTap("PRONTO — pressione X para executar", go);
+        }, false);
+
+        ac.addEventListener("updateready", function () {
+            try { ac.swapCache(); } catch (e) {}
+            setCache("Atualização pronta", true);
+            waitForTap("ATUALIZAÇÃO PRONTA — pressione X para recarregar", function () { location.reload(); });
+        }, false);
+
+        ac.addEventListener("noupdate", function () {
+            setCache("Cache pronto", true);
+            go();
+        }, false);
+
+        ac.addEventListener("error", function () {
+            setCache("Falha ao criar cache");
+            waitForTap("CACHE FALHOU — pressione X para executar mesmo assim", go);
+        }, false);
+
+        ac.addEventListener("obsolete", function () {
+            setCache("Cache obsoleto");
+            waitForTap("CACHE OBSOLETO — pressione X para executar", go);
+        }, false);
+    }
+})();
+</script>
+
+</body>
+</html>
